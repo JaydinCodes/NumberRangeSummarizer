@@ -6,12 +6,12 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 
 public class NumberRangeSummarizerImplTest {
 
@@ -90,25 +90,25 @@ public class NumberRangeSummarizerImplTest {
 
     @Test
     void shouldSortUnorderedInputBeforeSummarizing() {
-        // [5, 3, 4] -> "3-5"
+
         assertEquals("3-5", summarizer.summarizeCollection(Arrays.asList(5, 4, 3)));
     }
 
     @Test
     void shouldIgnoreDuplicateValues() {
-        // [1, 1, 2, 3] -> "1-3"
+
         assertEquals("1-3", summarizer.summarizeCollection(Arrays.asList(1,1,2,3)));
     }
 
     @Test
     void shouldReturnEmptyStringForEmptyCollection() {
-        // [] -> ""
+
         assertEquals("", summarizer.summarizeCollection(Arrays.asList()));
     }
 
     @Test
     void shouldKeepNonSequentialNumbersSeparate() {
-        // [1, 3, 5] -> "1, 3, 5"
+
         assertEquals("1, 3, 5", summarizer.summarizeCollection(Arrays.asList(1, 3, 5)));
     }
 

@@ -22,7 +22,8 @@ public class NumberRangeSummarizerImpl implements NumberRangeSummarizer{
 
     @Override
     public String summarizeCollection(Collection<Integer> input) {
-        List<Integer> sorted = input.stream().sorted().collect(Collectors.toList());
+        List<Integer> sorted = input.stream().distinct().sorted().collect(Collectors.toList());
+
         if (sorted.isEmpty()){
             return "";
         }
@@ -38,7 +39,7 @@ public class NumberRangeSummarizerImpl implements NumberRangeSummarizer{
                 parts.add(rangeStart == prev ? String.valueOf(rangeStart) : rangeStart + "-" + prev );
 
                 if (current != null){
-                    rangeStart += current;
+                    rangeStart = current;
                 }
             }
 

@@ -112,4 +112,27 @@ public class NumberRangeSummarizerImplTest {
         assertEquals("1, 3, 5", summarizer.summarizeCollection(Arrays.asList(1, 3, 5)));
     }
 
+    @Test
+    void shouldFormatNegativeSequentialRange() {
+        assertEquals("-3--1, 2", summarizer.summarizeCollection(Arrays.asList(-3, -2, -1, 2)));
+    }
+
+    @Test
+    void shouldSummarizeSingleNumber() {
+        assertEquals("5", summarizer.summarizeCollection(Arrays.asList(5)));
+    }
+
+    @Test
+    void shouldHandleBoundaryValuesWithoutOverflow() {
+        assertEquals("2147483646-2147483647",
+                summarizer.summarizeCollection(Arrays.asList(Integer.MAX_VALUE - 1, Integer.MAX_VALUE)));
+    }
+
+    @Test
+    void shouldThrowOnNullCollection() {
+        assertThrows(NullPointerException.class, () -> summarizer.summarizeCollection(null));
+    }
+
+
+
 }
